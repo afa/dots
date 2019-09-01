@@ -1,0 +1,3 @@
+source ~/.vim_common
+:colorscheme badwolf
+set mouse=a
