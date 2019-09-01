@@ -1,0 +1,68 @@
+execute pathogen#infect()
+set nocompatible
+syntax on
+:colorscheme badwolf
+filetype plugin indent on
+
+" set rtp+=/usr/local/opt/fzf
+" call plug#begin()
+" call plug#end()
+
+let g:ctrlp_max_files=50000
+let g:ctrlp_custom_ignore='node_modules\|DS_Store\|git'
+
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunCurrentSpecFile()<CR>
+
+set laststatus=2
+set ruler
+set colorcolumn=120
+highlight ColorColumn ctermbg=52
+" set textwidth=120
+set tb=
+
+" runtime macros/matchit.vim
+
+set showbreak=~
+set winheight=999
+set winminheight=0
+
+" test for usability
+noremap <C-J> :bnext<CR>
+noremap <C-K> :bprev<CR>
+noremap <C-L> :tabn<CR>
+noremap <C-H> :tabp<CR>
+
+noremap <C-i> :InlineEdit<CR>
+
+" use * to search current word in normal mode
+nmap * <Plug>AgActionWord
+" use * to search selected text in visual mode
+vmap * <Plug>AgActionVisual
+
+noremap <C-Y> :NERDTreeToggle<CR>
+noremap <Leader>n :noh<CR>
+nnoremap ff :Ag<SPACE>
+
+nnoremap <Leader>/ :CtrlPTag<CR>
+nnoremap <Leader>. :tn<CR>
+nnoremap <Leader>, :tp<CR>
+
+let g:reek_always_show = 0
+let g:reek_on_loading = 0
+
+let g:jsx_ext_required = 0
+
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_aggregate_errors = 1
+" let g:syntastic_ruby_rubocop_exec = 'bundle exec rubocop'
+let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
+let g:startify_session_persistence = 1
+
+let g:ctrlp_custom_ignore = 'node_modules\|git'
+
+autocmd User Startified setlocal buftype=
+
+nmap <F8> :TagbarToggle<CR>
