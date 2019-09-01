@@ -1,2 +1,3 @@
 TAGS="vim"
 HOSTNAME="ioteh"
+EXCLUDES=README.md
