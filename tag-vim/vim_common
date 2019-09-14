@@ -8,6 +8,7 @@ filetype plugin indent on
 " call plug#begin()
 " call plug#end()
 
+set wildignore+=*.swp
 let g:ctrlp_max_files=50000
 let g:ctrlp_custom_ignore='node_modules\|DS_Store\|git'
 
