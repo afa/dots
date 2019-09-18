@@ -1,0 +1,12 @@
+Host b000520
+	Hostname 172.25.73.248
+	User webadmin
+	SendEnv PROXY_USER PROXY_PASS
+Host b000495
+	Hostname 172.25.73.215
+	User webadmin
+	SendEnv PROXY_USER PROXY_PASS
+Host b000536
+	Hostname 172.27.70.52
+	User webadmin
+	SendEnv PROXY_USER PROXY_PASS
