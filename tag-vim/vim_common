@@ -1,5 +1,5 @@
-execute pathogen#infect()
 set nocompatible
+execute pathogen#infect()
 syntax on
 :colorscheme badwolf
 filetype plugin indent on
