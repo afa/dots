@@ -1,0 +1,7 @@
+[user]
+	email = oleg.zavgorodniy@datasolution.team
+	name = Oleg Zavgorodniy
+[core]
+	excludesfile = /home/afa/.gitignore_global
+[alias]
+        lol = log --oneline --decorate --graph
