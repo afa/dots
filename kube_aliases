@@ -1,0 +1,29 @@
+# kubes
+alias kubssh='ssh o.zavgorodniy@kube-control.crowdsystems.net'
+alias kubctl='kubssh KUBECONFIG=/etc/kubernetes/config kubectl'
+alias cronctl='kubctl --context=cntx-mosreg-knd -n knd-production'
+alias toppods='cronctl get pods|ag topcontrol'
+alias cronpods='cronctl get pods|ag cron-control'
+finction cronexec() {
+  n=`cronpods|awk 'BEGIN { FS=" " }; /cron-control-(green|blue)/ { print $1 }'`
+  cronctl exec "$n" $@
+  return
+}
+finction cronsexec() {
+  n=`cronpods|awk 'BEGIN { FS=" " }; /cron-control-sidekiq.+Running/ { print $1 }'`
+  cronctl exec "$n" $@
+  return
+}
+finction cronslogs() {
+  n=`cronpods|awk 'BEGIN { FS=" " }; /cron-control-sidekiq.+Running/ { print $1 }'`
+  cronctl logs "$n"
+  return
+}
+finction cronlogs() {
+  n=`cronpods|awk 'BEGIN { FS=" " }; /cron-control-(green|blue).+Running/ { print $1 }'`
+  cronctl logs "$n"
+  return
+}
+alias cronplog='cronexec cat /app/log/production.log'
+alias cronsplog='cronsexec cat /app/log/production.log'
+# kubectl --context=cntx-mosreg-knd -n knd-production exec  cron-control-green-6f6895bf4b-4zvrg cat /app/log/production.log

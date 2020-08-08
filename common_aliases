@@ -1,0 +1,4 @@
+alias notes="$EDITOR ~/notes"
+
+alias mux=tmuxinator
+
