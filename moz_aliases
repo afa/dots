@@ -1,3 +1,36 @@
+function chk_moz_inet() {
+  n=`ping -n -c 3 -w 2 -q 8.8.8.8|ag -o ' \K\d+(?=% packet loss)'`
+  if [[ $n == '100' ]]
+  then
+    echo -e "\033[1;31minet out\033[0m"
+  else
+    echo -e "\033[1;32minet avail\033[0m"
+  fi
+  # echo "$?"
+  return
+}
+# function chk_moz_dns() {
+#   n=`ping -n -c 3 -w 2 -q project.megarulez.ru|ag -o ' \K\d+(?=% packet loss)'`
+#   if [[ $n == '100' ]]
+#   then
+#     echo -e "\033[1;31minet out\033[0m"
+#   else
+#     echo -e "\033[1;32minet avail\033[0m"
+#   fi
+#   # echo "$?"
+#   return
+# }
+function chk_moz_ping() {
+  n=`ping -n -c 3 -w 2 -q project.megarulez.ru|ag -o ' \K\d+(?=% packet loss)'`
+  if [[ $n == '100' ]]
+  then
+    echo -e "\033[1;31mmozaiq server nonpingable\033[0m"
+  else
+    echo -e "\033[1;32mmozaique avail\033[0m"
+  fi
+  # echo "$?"
+  return
+}
 function chk_moz() {
   x=`ssh mozaic service --status-all|ag --nomultiline -o "\[ \+ \].*(apache2|mysql|postgres)"|wc -l|sed 's/^[\t ]*//g'`
   if [[ $x == '2' ]]
@@ -44,6 +77,8 @@ function moz_mem() {
   return
 }
 function moz() {
+  chk_moz_inet
+  chk_moz_ping
   chk_moz
   chk_moz_curl
   chk_moz_body
