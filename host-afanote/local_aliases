@@ -1,0 +1,2 @@
+[ -f ~/.bsd_aliases ] && source ~/.bsd_aliases
+alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
