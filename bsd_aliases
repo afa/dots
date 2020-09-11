@@ -1,0 +1,30 @@
+# bsd
+alias portscln='sudo rm -r /usr/ports/distfiles/*'
+alias portsrenew='sudo portsnap fetch update'
+alias portsnew='sudo portmaster -L|ag New'
+alias ruset='setxkbmap -option grp:switch,grp:shift_caps_switch,grp_led:scroll us,ru'
+
+# afanote tmp aliases
+function mp4tomp3() {
+  ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
+}
+
+function packfb2() {
+  ls|awk '{print $0 ".zip " $0}'|xargs -P 8 -n 2 -J % zip -m9 %
+}
+
+# afahome
+alias rhm='ssh afahome'
+
+# transmission @afahome
+alias rtrans='rhm transmission-remote'
+alias rtrl='rtrans -l'
+function rtra() {
+  scp $@ afahome:Torrents/.new
+}
+function rtrd() {
+  rtrans -t $@ --remove-and-delete
+}
+function rcp() {
+  scp -r $@ ./
+}
