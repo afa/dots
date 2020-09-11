@@ -4,6 +4,9 @@ alias portsrenew='sudo portsnap fetch update'
 alias portsnew='sudo portmaster -L|ag New'
 alias ruset='setxkbmap -option grp:switch,grp:shift_caps_switch,grp_led:scroll us,ru'
 
+# bsd ping with 2 seconds timeout for moz funcs
+alias w2ping='ping -t 2'
+
 # afanote tmp aliases
 function mp4tomp3() {
   ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
