@@ -1,5 +1,5 @@
 function chk_moz_inet() {
-  n=`ping -n -c 3 -w 2 -q 8.8.8.8|ag -o ' \K\d+(?=% packet loss)'`
+  n=`w2ping -n -c 3 -q 8.8.8.8|ag -o ' \K\d+(?=% packet loss)'`
   if [[ $n == '100' ]]
   then
     echo -e "\033[1;31minet out\033[0m"
@@ -11,7 +11,7 @@ function chk_moz_inet() {
 }
 
 function chk_moz_ping() {
-  n=`ping -n -c 3 -w 2 -q project.megarulez.ru|ag -o ' \K\d+(?=% packet loss)'`
+  n=`w2ping -n -c 3 -q project.megarulez.ru|ag -o ' \K\d+(?=% packet loss)'`
   if [[ $n == '100' ]]
   then
     echo -e "\033[1;31mmozaiq server nonpingable\033[0m"
