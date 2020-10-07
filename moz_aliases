@@ -68,6 +68,13 @@ function moz_mem() {
   echo -e "\033[1;32mmem avail: $f\nswap free: $s\033[0m"
   return
 }
+function moz_disk() {
+  x=`ssh mozaic df -m /var/www/html`
+  f=`echo "$x"|awk -F ' ' '/^\/dev\// { print $4 "M" }'`
+  s=`echo "$x"|awk -F ' ' '/^\/dev\// { print $5 }'`
+  echo -e "\033[1;32mDisk free: $f\nDisk usage: $s\033[0m"
+  return
+}
 function moz() {
   chk_moz_inet
   chk_moz_ping
@@ -76,6 +83,7 @@ function moz() {
   chk_moz_body
   moz_up
   moz_mem
+  moz_disk
 }
 
 function moz_restart() {
