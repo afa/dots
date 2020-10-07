@@ -1,2 +1,10 @@
 [ -f ~/.bsd_aliases ] && source ~/.bsd_aliases
 alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
+function mkmigrate() {
+  x=$@
+  n=`date '+%s'`
+  m="db/migrate/${n}_${x}.rb"
+  echo $m
+  `touch $m`
+  return
+}
