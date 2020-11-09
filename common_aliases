@@ -3,6 +3,6 @@ alias notes="$EDITOR ~/notes"
 alias mux=tmuxinator
 
 # weather
-alias weather='LANG=ru_RU curl wttr.in/55.804471,37.590335\?M'
+alias weather='LANG=ru_RU curl wttr.in/55.804577,37.645977\?M'
 alias kweather='LANG=ru_RU curl wttr.in/Калуга\?M'
 alias nweather='LANG=ru_RU curl wttr.in/Нахабино\?M'

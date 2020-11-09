@@ -1,0 +1,4 @@
+TAGS="vim"
+HOSTNAME="afawork"
+EXCLUDES=README.md
+
