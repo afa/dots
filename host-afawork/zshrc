@@ -71,7 +71,7 @@ COMPLETION_WAITING_DOTS="true"
 
 TIMER_THRESHOLD=10
 
-plugins=(git git-flow rails rbenv bundler timer)
+plugins=(git git-flow rails rbenv bundler timer ansible postgres rsync thor tmux tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
