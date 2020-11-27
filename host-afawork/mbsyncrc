@@ -1,0 +1,39 @@
+IMAPAccount imap-afa-google
+Host imap.gmail.com
+User afa.alone@gmail.com
+Pass "***REMOVED***"
+# PassCmd "c63052daf04c38b37dc4b46ce9330822"
+SSLType IMAPS
+
+IMAPAccount imap-wc-yandex
+Host imap.yandex.ru
+User zavgorodniy@web-creator.ru
+Pass "yxsghiczqsjgceyy"
+# PassCmd "c63052daf04c38b37dc4b46ce9330822"
+SSLType IMAPS
+
+IMAPStore imapstore-afa-google
+Account imap-afa-google
+
+IMAPStore imapstore-wc-yandex
+Account imap-wc-yandex
+
+MaildirStore local-afa-google
+SubFolders Verbatim
+Path ~/Mail-mbsync-g/
+Inbox ~/Mail-mbsync-g/inbox
+
+MaildirStore local-wc-yandex
+SubFolders Verbatim
+Path ~/Mail-mbsync/
+Inbox ~/Mail-mbsync/inbox
+
+Channel google->local
+Master :imapstore-afa-google:
+Slave :local-afa-google:
+Patterns *
+
+Channel yandex->local
+Master :imapstore-wc-yandex:
+Slave :local-wc-yandex:
+Patterns *
