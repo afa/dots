@@ -13,7 +13,7 @@ alias srg_ssh='ssh srg_prod'
 function srg_deploy() {
   srg_ssh 'source /root/.bash_profile &&cd /data/srg && git pull'
   srg_ssh 'source /root/.bash_profile &&cd /data/srg && bundle install'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && rake db:migrate'
+  srg_ssh 'source /root/.bash_profile &&cd /data/srg && RAILS_ENV=production rake db:migrate'
   srg_ssh 'source /root/.bash_profile &&cd /data/srg && yarn install && yarn build'
   srg_ssh 'source /root/.bash_profile &&cd /data/srg && kill `cat /data/srg/tmp/pids/puma.pid`'
   srg_ssh 'source /root/.bash_profile &&cd /data/srg && rails s -e production'
