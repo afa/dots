@@ -2,3 +2,7 @@
 [ -f ~/.moz_aliases ] && source ~/.moz_aliases
 [ -f ~/.kube_aliases ] && source ~/.kube_aliases
 [ -f ~/.local_aliases ] && source ~/.local_aliases
+alias weather='LANG=ru_RU curl wttr.in/55.804471,37.590335\?M'
+alias kweather='LANG=ru_RU curl wttr.in/Калуга\?M'
+alias nweather='LANG=ru_RU curl wttr.in/Нахабино\?M'
+alias hweather='LANG=ru_RU curl wttr.in/55.841903,37.142229\?M'
