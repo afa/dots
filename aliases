@@ -2,3 +2,4 @@
 [ -f ~/.moz_aliases ] && source ~/.moz_aliases
 [ -f ~/.kube_aliases ] && source ~/.kube_aliases
 [ -f ~/.local_aliases ] && source ~/.local_aliases
+[ -f ~/.work_aliases ] && source ~/.work_aliases
