@@ -6,17 +6,3 @@ alias mux=tmuxinator
 alias weather='LANG=ru_RU curl wttr.in/55.804577,37.645977\?M'
 alias kweather='LANG=ru_RU curl wttr.in/Калуга\?M'
 alias nweather='LANG=ru_RU curl wttr.in/Нахабино\?M'
-
-#srg
-alias srg_ssh='ssh srg_prod'
-
-function srg_deploy() {
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && git pull'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && bundle install'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && RAILS_ENV=production rake db:migrate'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && yarn install && yarn build'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && kill `cat /data/srg/tmp/pids/puma.pid` && echo "kill ok"'
-  srg_ssh 'source /root/.bash_profile &&cd /data/srg && rails s -e production && echo "puma ok"'
-  return
-}
-alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
