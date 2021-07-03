@@ -12,6 +12,10 @@ function mp4tomp3() {
   ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
 
+function avi2mp4() {
+  ls -- *.avi|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp4" "\"" "\0" }'|xargs -n 2 ffmpeg -i
+}
+
 function packfb2() {
   ls|awk '{print $0 ".zip " $0}'|xargs -P 8 -n 2 -J % zip -m9 %
 }

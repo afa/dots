@@ -2,8 +2,16 @@
 [ -f ~/.moz_aliases ] && source ~/.moz_aliases
 [ -f ~/.kube_aliases ] && source ~/.kube_aliases
 [ -f ~/.local_aliases ] && source ~/.local_aliases
-alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
-alias weather='LANG=ru_RU curl wttr.in/55.804471,37.590335\?M'
-alias kweather='LANG=ru_RU curl wttr.in/Калуга\?M'
-alias nweather='LANG=ru_RU curl wttr.in/Нахабино\?M'
-alias hweather='LANG=ru_RU curl wttr.in/55.841903,37.142229\?M'
+[ -f ~/.work_aliases ] && source ~/.work_aliases
+
+function noteback() {
+  ssh afahome mkdir -p backup/afanote backup/afanote/downloads_mp4
+  rsync -rPz --delete-after ~/Photo afahome:backup/afanote/
+  rsync -rPz --delete-after ~/rails afahome:backup/afanote/
+  rsync -rPz --delete-after ~/work afahome:backup/afanote/
+  rsync -rPz --delete-after ~/Downloads/mp4/ afahome:backup/afanote/downloads_mp4
+}
+
+function ydupalltomp3() {
+  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
+}

@@ -1,4 +1,5 @@
 [ -f ~/.bsd_aliases ] && source ~/.bsd_aliases
+[ -f ~/.work_aliases ] && source ~/.work_aliases
 alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
 function mkmigrate() {
   x=$@
