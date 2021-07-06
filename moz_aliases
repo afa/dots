@@ -84,13 +84,15 @@ function moz() {
   moz_up
   moz_mem
   moz_disk
+  moz_procs
 }
 
 function moz_procs() {
-  echo 'cpu'
-  ssh mozaic ps aux --sort -pcpu|head -3|tail -2
-  echo 'mem'
-  ssh mozaic ps aux --sort -rss|head -3|tail -2
+  echo -e "\033[1;32mTop cpu\033[0m"
+  ssh mozaic ps aux --sort -pcpu|head -3|cut -w -f 2,3,11-
+  echo -e "\033[1;32mTop mem\033[0m"
+  ssh mozaic ps aux --sort -rss|head -3|cut -w -f 2,4-6,11-
+  return
 }
 function moz_restart() {
   return
