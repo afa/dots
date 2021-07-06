@@ -86,6 +86,12 @@ function moz() {
   moz_disk
 }
 
+function moz_procs() {
+  echo 'cpu'
+  ssh mozaic ps aux --sort -pcpu|head -3|tail -2
+  echo 'mem'
+  ssh mozaic ps aux --sort -rss|head -3|tail -2
+}
 function moz_restart() {
   return
 }
