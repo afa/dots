@@ -12,3 +12,61 @@ function srg_deploy() {
 }
 alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
 
+#redmine
+REDMINE_WORK_SERVER='https://itmine.***REMOVED***'
+REDMINE_WORK_TOKEN='14f88211b63087cd642c17f24030b924ebf86a7b'
+REDMINE_WORK_USER='1074'
+# REDMINE_WORK_SERVER='http://localhost'
+# REDMINE_WORK_TOKEN='d816bb490bfc9e75aa7d957b9852a4bcf50c679f'
+# REDMINE_WORK_USER='1'
+
+function red_get(){
+  local u1="$1"
+  shift
+  curl -s -H "X-Redmine-API-Key: $REDMINE_WORK_TOKEN" -H 'Content-Type: application/json' "$REDMINE_WORK_SERVER/$u1"
+}
+
+function red_post(){
+  local u1="$1"
+  shift
+  local dat="$@"
+  shift
+  curl -d "$dat" -H "X-Redmine-API-Key: $REDMINE_WORK_TOKEN" -H 'Content-Type: application/json' "$REDMINE_WORK_SERVER/$u1"
+}
+
+function red_acts() {
+  local id="$1"
+  shift
+  local iss=`red_get "issues/$id.json"`
+  local prj=`echo "$iss"|jq '.issue.project.id'`
+  local ta=`red_get "projects/$prj.json?include=time_entry_activities"`
+  local lst=`echo "$ta"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.project.time_entry_activities[]|[.id, .name]|join(": ")'`
+  echo "$lst"
+}
+
+function red_iss() {
+  local iss=`red_get "issues.json?assigned_to_id=me&limit=100"`
+  local lst=`echo "$iss"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.issues[]|[.id, .subject]|join(": ")'`
+  echo "$lst"
+}
+
+function red_wrks() {
+  local wrk=`red_get "time_entries.json?user_id=$REDMINE_WORK_USER&sort=spent_on:desc&limit=100"`
+  local lst=`echo "$wrk"|jq '.time_entries[]|[.issue.id, .activity.id, .activity.name, .spent_on, .hours]|join(" - ")'`
+  echo "$lst"
+}
+
+# params issue_id activity_id hours date comment
+function red_wrks_add() {
+  local iss=$1
+  shift
+  local act=$1
+  shift
+  local hours=$1
+  shift
+  local dat=$1
+  shift
+  local cmnt=$@
+  local d=`jq -n "{time_entry: {issue_id: $iss, spent_on: \"$dat\", hours: $hours, activity_id: $act, comment: \"$cmnt\"}}"`
+  red_post 'time_entries.json' "$d"
+}
