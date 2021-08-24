@@ -1,0 +1,9 @@
+[user]
+	email = afa.alone@gmail.com
+	name = afa
+[core]
+	excludesfile = /home/afa/.gitignore_global
+[alias]
+        lol = log --oneline --decorate --graph
+[pull]
+	rebase = false
