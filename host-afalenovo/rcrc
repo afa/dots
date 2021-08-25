@@ -1,0 +1,4 @@
+TAGS="vim"
+HOSTNAME="afalenovo"
+EXCLUDES=README.md
+
