@@ -13,12 +13,14 @@ function srg_deploy() {
 alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
 
 #redmine
-# REDMINE_WORK_SERVER='https://itmine.***REMOVED***'
-# REDMINE_WORK_TOKEN='14f88211b63087cd642c17f24030b924ebf86a7b'
-# REDMINE_WORK_USER='1074'
-REDMINE_WORK_SERVER='http://localhost'
-REDMINE_WORK_TOKEN='d816bb490bfc9e75aa7d957b9852a4bcf50c679f'
-REDMINE_WORK_USER='1'
+REDMINE_WORK_SERVER='https://itmine.***REMOVED***'
+REDMINE_WORK_TOKEN='14f88211b63087cd642c17f24030b924ebf86a7b'
+REDMINE_WORK_USER='1074'
+REDMINE_CF='ОЦРВ. Redmine. Сопровождение + модификации'
+# REDMINE_WORK_SERVER='http://localhost'
+# REDMINE_WORK_TOKEN='d816bb490bfc9e75aa7d957b9852a4bcf50c679f'
+# REDMINE_WORK_USER='1'
+# REDMINE_CF=''
 
 function red_get(){
   local u1="$1"
@@ -67,6 +69,7 @@ function red_wrks_add() {
   local dat=$1
   shift
   local cmnt=$@
-  local d=`jq -n "{time_entry: {issue_id: $iss, spent_on: \"$dat\", hours: $hours, activity_id: $act, comments: \"$cmnt\"}}"`
+  local cf=`[ -n "$REDMINE_CF" ] && echo ", custom_fields: [{id: 17, value: \"$REDMINE_CF\"}]"`
+  local d=`jq -n "{time_entry: {issue_id: $iss, spent_on: \"$dat\", hours: $hours, activity_id: $act, comments: \"$cmnt\"$cf}}"`
   red_post 'time_entries.json' "$d"
 }
