@@ -40,8 +40,9 @@ function red_acts() {
   local id="$1"
   shift
   local iss=`red_get "issues/$id.json"`
-  local prj=`echo "$iss"|jq '.issue.project.id'`
+  local prj=`echo "$iss"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.issue.project.id'`
   local ta=`red_get "projects/$prj.json?include=time_entry_activities"`
+  echo "$ta"
   local lst=`echo "$ta"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.project.time_entry_activities[]|[.id, .name]|join(": ")'`
   echo "$lst"
 }
@@ -49,6 +50,16 @@ function red_acts() {
 function red_iss() {
   local iss=`red_get "issues.json?assigned_to_id=me&limit=100"`
   local lst=`echo "$iss"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.issues[]|[.id, .subject]|join(": ")'`
+  echo "$lst"
+}
+
+function red_wrks_between() {
+  local from=$1
+  shift
+  local to=$1
+  shift
+  local wrk=`red_get "time_entries.json?from=$from&to=$to&user_id=$REDMINE_WORK_USER&sort=spent_on:desc&limit=100"`
+  local lst=`echo "$wrk"|tr -d '\r'|tr -d '\n'|tr -d '\t'|jq '.time_entries[]|[.issue.id, .activity.id, .activity.name, .spent_on, .hours, .comments]|join(" - ")'`
   echo "$lst"
 }
 
