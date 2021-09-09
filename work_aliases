@@ -61,7 +61,7 @@ function red_wrks_between() {
   local wrk=`red_get "time_entries.json?from=$from&to=$to&user_id=$REDMINE_WORK_USER&sort=spent_on:desc&limit=100"|tr -d '\r'|tr -d '\n'|tr -d '\t'`
   local cnt=`echo "$wrk"|jq '.time_entries|map_values(.hours)|add'`
   echo "Total: $cnt"
-  local lst=`echo "$wrk"|jq '.time_entries|group_by(.issue.id)[]|[(first|.issue.id), (map_values(.hours)|add)]|join(": ")'
+  local lst=`echo "$wrk"|jq '.time_entries|group_by(.issue.id)[]|[(first|.issue.id), (map_values(.hours)|add)]|join(": ")'`
   echo "$lst"
 }
 
