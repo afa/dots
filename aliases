@@ -13,8 +13,8 @@ function noteback() {
 }
 
 function ydupalltomp3() {
-  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
+  ls|awk '{print "\x27" $0 "\x27" }'|xargs -t -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
 }
 function ydupalltotmp() {
-  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/tmp/
+  ls|awk '{print "\x27" $0 "\x27" }'|xargs -t -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/tmp/
 }
