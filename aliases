@@ -12,6 +12,13 @@ function noteback() {
   rsync -rPz --delete-after ~/Downloads/mp4/ afahome:backup/afanote/downloads_mp4
 }
 
+BACKUP_SRV=as
+BACKUP_ROOT=~/backtest
+BACKUP_LIST='~/work:;~/.vim:vim'
+function noteb2() {
+  local srv=`[ -n "$BACKUP_SRV" ] && echo "$BACKUP_SRV:"`
+  echo "$srv"
+}
 function ydupalltomp3() {
   ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
 }
