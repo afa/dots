@@ -23,6 +23,8 @@ function packfb2() {
 # afahome
 alias rhm='ssh afahome'
 
+alias ZZZ='sudo zzz'
+
 # transmission @afahome
 alias rtrans='rhm transmission-remote'
 alias rtrl='rtrans -l'
