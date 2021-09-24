@@ -12,6 +12,11 @@ function srg_deploy() {
 }
 alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
 
+# old pg
+# alias pg_prod_top='psql -U emcread -h 90.154.122.123 -p 45432 topcontrol_staging'
+# alias pg_stage_knd='psql -U ozavgorodniy -h 188.40.16.239 -p 7441 knd_staging'
+# alias pgdump_stage_knd='pg_dump -U ozavgorodniy -h 188.40.16.239 -p 7441 -t support_state -a knd_staging'
+
 #redmine
 REDMINE_WORK_SERVER='https://itmine.***REMOVED***'
 REDMINE_WORK_TOKEN='14f88211b63087cd642c17f24030b924ebf86a7b'
