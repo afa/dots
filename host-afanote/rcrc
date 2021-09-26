@@ -1,0 +1,4 @@
+# TAGS="vim"
+HOSTNAME="afanote"
+EXCLUDES=README.md
+
