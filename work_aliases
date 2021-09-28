@@ -26,6 +26,8 @@ REDMINE_CF='ОЦРВ. Redmine. Сопровождение + модификаци
 # REDMINE_WORK_TOKEN='d816bb490bfc9e75aa7d957b9852a4bcf50c679f'
 # REDMINE_WORK_USER='1'
 # REDMINE_CF=''
+# If you truly want to disable curl SSL verification, by default, for ALL use cases, you can do as suggested in this Unix stack exchange answer:
+# $ echo insecure >> ~/.curlrc
 
 function red_get(){
   local u1="$1"

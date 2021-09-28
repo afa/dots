@@ -1,3 +1,14 @@
 [ -f ~/.lin_aliases ] && source ~/.lin_aliases
 [ -f ~/.work_aliases ] && source ~/.work_aliases
 alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
+
+function clean_note() {
+  rm -r ~/porno
+  rm -r ~/Downloads/*
+  rm -r ~/vid
+  rm -r ~/work
+  rm -r ~/Videos/*
+  rm -rf ~/.ssh
+  rm -rf ~/.dotfiles
+  rm -rf ~/nokia
+}
