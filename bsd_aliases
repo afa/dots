@@ -28,10 +28,14 @@ alias ZZZ='sudo zzz'
 # transmission @afahome
 alias rtrans='rhm transmission-remote'
 alias rtrl='rtrans -l'
-alias rtrs='rtrans -s'
-alias rtrS='rtrans -S'
 function rtra() {
   scp $@ afahome:Torrents/.new
+}
+function rtrs() {
+  rtrans -t $@ -s
+}
+function rtrS() {
+  rtrans -t $@ -S
 }
 function rtrd() {
   rtrans -t $@ --remove-and-delete
