@@ -20,26 +20,4 @@ function packfb2() {
   ls|awk '{print $0 ".zip " $0}'|xargs -P 8 -n 2 -J % zip -m9 %
 }
 
-# afahome
-alias rhm='ssh afahome'
-
 alias ZZZ='sudo zzz'
-
-# transmission @afahome
-alias rtrans='rhm transmission-remote'
-alias rtrl='rtrans -l'
-function rtra() {
-  scp $@ afahome:Torrents/.new
-}
-function rtrs() {
-  rtrans -t $@ -s
-}
-function rtrS() {
-  rtrans -t $@ -S
-}
-function rtrd() {
-  rtrans -t $@ --remove-and-delete
-}
-function rcp() {
-  scp -r $@ ./
-}
