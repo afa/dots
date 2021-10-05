@@ -1,5 +1,6 @@
 [ -f ~/.lin_aliases ] && source ~/.lin_aliases
 [ -f ~/.work_aliases ] && source ~/.work_aliases
+[ -f ~/.home_aliases ] && source ~/.home_aliases
 alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
 
 function clean_note() {
