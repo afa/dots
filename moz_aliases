@@ -89,11 +89,12 @@ function moz() {
 
 function moz_procs() {
   echo -e "\033[1;32mTop cpu\033[0m"
-  ssh mozaic ps aux --sort -pcpu|head -3|cut -w -f 2,3,11-
+  ssh mozaic ps aux --sort -pcpu|head -3|local_cut -f 2,3,11-
   echo -e "\033[1;32mTop mem\033[0m"
-  ssh mozaic ps aux --sort -rss|head -3|cut -w -f 2,4-6,11-
+  ssh mozaic ps aux --sort -rss|head -3|local_cut -f 2,4-6,11-
   return
 }
 function moz_restart() {
+  ssh mozaic 'service apache2 stop;service mysql stop;service mysql start&&service apache2 start'
   return
 }
