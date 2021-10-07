@@ -100,6 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 [ -f ~/.aliases ] && source ~/.aliases
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/bin:$PATH"
 eval "$(rbenv init - zsh)"
 export DISABLE_SPRING=1

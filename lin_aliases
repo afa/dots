@@ -1,2 +1,3 @@
 # linux ping with 2 seconds timeout for moz funcs
 alias w2ping='ping -w 2'
+alias local_cut='cut'
