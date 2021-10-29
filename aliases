@@ -19,6 +19,8 @@ function noteb2() {
   local srv=`[ -n "$BACKUP_SRV" ] && echo "$BACKUP_SRV:"`
   local remot=echo "$srv"
 }
+alias ydinfo="ydcmd.py info"
+alias ydls="ydcmd.py ls"
 function ydupalltomp3() {
   ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
 }
