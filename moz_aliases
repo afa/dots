@@ -96,5 +96,6 @@ function moz_procs() {
 }
 function moz_restart() {
   ssh mozaic 'service apache2 stop;service mysql stop;service mysql start&&service apache2 start'
+  chk_moz
   return
 }
