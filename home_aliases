@@ -7,6 +7,12 @@ alias rtrl='rtrans -l'
 function rtra() {
   scp $@ afahome:Torrents/.new
 }
+function rtri() {
+  rtrans -t $@ -i
+}
+function rtrf() {
+  rtrans -t $@ -f
+}
 function rtrs() {
   rtrans -t $@ -s
 }
