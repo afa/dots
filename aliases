@@ -1,3 +1,4 @@
+[ -f ~/.secret_aliases ] && source ~/.secret_aliases
 [ -f ~/.common_aliases ] && source ~/.common_aliases
 [ -f ~/.moz_aliases ] && source ~/.moz_aliases
 [ -f ~/.kube_aliases ] && source ~/.kube_aliases
