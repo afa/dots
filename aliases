@@ -22,6 +22,7 @@ function noteb2() {
 }
 alias ydinfo="ydcmd.py info"
 alias ydls="ydcmd.py ls"
+alias yddu="ydcmd.py du"
 function ydupalltomp3() {
   ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
 }
