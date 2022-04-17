@@ -6,7 +6,7 @@ alias ruset='setxkbmap -option grp:switch,grp:shift_caps_switch,grp_led:scroll u
 
 # bsd ping with 2 seconds timeout for moz funcs
 alias w2ping='ping -t 2'
-alias -g local_cut='cut -w'
+export LOCAL_CMD_CUT='cut -w'
 
 # afanote tmp aliases
 function packfb2() {
