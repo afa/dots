@@ -1,0 +1,4 @@
+# mac ping with 2 seconds timeout for moz funcs
+alias w2ping='ping -t 2'
+export LOCAL_CMD_CUT='cut'
+
