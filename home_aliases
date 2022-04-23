@@ -1,5 +1,6 @@
 # afahome
 alias rhm='ssh afahome'
+alias rhdf='rhm df -h'
 
 # transmission @afahome
 alias rtrans='rhm transmission-remote'
