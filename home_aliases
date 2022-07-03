@@ -36,6 +36,31 @@ function avi2mp4() {
   ls -- *.avi|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp4" "\"" "\0" }'|xargs -n 2 ffmpeg -i
 }
 
+# mp3 remote generating
+MP4_REMOTE_HOST=afanote
+MP4_REMOTE_PATH=/home/afa/Downloads/mp4
+MP4_LOCAL_PATH=$HOME/Downloads/mp4
+MP4_LOCAL_MP3_PATH=$HOME/Downloads/mp4/mp3
+function mp4put() {
+  ls -- *.mp4|awk -v rhost="$MP4_REMOTE_HOST" -v rpath="$MP4_REMOTE_PATH" '{ print "\"" $0 "\"" " \0" "\"" rhost ":" rpath "/\"" "\0" }'|xargs -n 2 rsync -P
+  return
+}
+
+function mp3start() {
+  ssh $MP4_REMOTE_HOST -tt tmux new -c $MP4_REMOTE_PATH -s mp3
+  return
+}
+
+function mp3show() {
+  ssh $MP4_REMOTE_HOST -tt tmux attach -t mp3
+  return
+}
+
+function mp3get() {
+  scp "$MP4_REMOTE_HOST:$MP4_REMOTE_PATH/*.mp3" "$MP4_LOCAL_MP3_PATH/"
+  return
+}
+
 # yandex disk handling
 alias ydinfo="ydcmd.py info"
 alias ydls="ydcmd.py ls"

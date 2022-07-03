@@ -12,6 +12,26 @@ function srg_deploy() {
 }
 alias srg_fatal='ssh srg_prod grep -s -A3 FATAL /data/srg/log/production.log'
 
+# piao
+# app1 (root)
+alias piao_app1_ssh='ssh piao5_app1'
+
+function piao_app1_restart() {
+  piao_app1_ssh systemctl restart piao5-web
+  sleep 8
+  piao_app1_ssh systemctl status piao5-web
+  return
+}
+
+alias piao_app2_ssh='ssh piao5_app2'
+
+function piao_app2_restart() {
+  piao_app2_ssh systemctl restart piao5-sidekiq
+  sleep 8
+  piao_app2_ssh systemctl status piao5-sidekiq
+  return
+}
+
 # old pg
 # alias pg_prod_top='psql -U emcread -h 90.154.122.123 -p 45432 topcontrol_staging'
 # alias pg_stage_knd='psql -U ozavgorodniy -h 188.40.16.239 -p 7441 knd_staging'
