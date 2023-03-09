@@ -9,8 +9,4 @@ alias w2ping='ping -t 2'
 export LOCAL_CMD_CUT='cut -w'
 
 # afanote tmp aliases
-function packfb2() {
-  ls|awk '{print $0 ".zip " $0}'|xargs -P 8 -n 2 -J % zip -m9 %
-}
-
 alias ZZZ='sudo zzz'
