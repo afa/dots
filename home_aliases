@@ -28,6 +28,10 @@ function rcp() {
 }
 
 # mp4 & avi handling
+function oggtomp3() {
+  ls -- *.ogg|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
+}
+
 function mp4tomp3() {
   ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
@@ -42,7 +46,7 @@ MP4_REMOTE_PATH=/home/afa/Downloads/mp4
 MP4_LOCAL_PATH=$HOME/Downloads/mp4
 MP4_LOCAL_MP3_PATH=$HOME/Downloads/mp4/mp3
 function mp4put() {
-  ls -- *.mp4|awk -v rhost="$MP4_REMOTE_HOST" -v rpath="$MP4_REMOTE_PATH" '{ print "\"" $0 "\"" " \0" "\"" rhost ":" rpath "/\"" "\0" }'|xargs -n 2 rsync -P
+  find . -name \*.mp4 -depth 1 -print0|xargs -n 1 -0 -J% rsync -P % $MP4_REMOTE_HOST:$MP4_REMOTE_PATH/
   return
 }
 
@@ -61,14 +65,29 @@ function mp3get() {
   return
 }
 
+# fb2 processing
+function packfb2() {
+  ls|awk '{print $0 ".zip " $0}'|xargs -P 8 -n 2 -J % zip -m9 %
+}
+
+# common commands
+
+function dus() {
+  du -h -d 1 $@|sort -h
+}
+
 # yandex disk handling
 alias ydinfo="ydcmd.py info"
 alias ydls="ydcmd.py ls"
 alias yddu="ydcmd.py du"
 
+function pbdrpupall() {
+  ls|awk '{print "\x27" $0 "\x27" "\x20\x27" "Apps/Dropbox\x20PocketBook/" $0 "\x27" }'|xargs -n 2 -t -J % dbxcli put % 
+}
+
 function ydupalltomp3() {
-  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --progress % flm/mp3/
+  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --retries=1 --progress % flm/mp3/
 }
 function ydupalltotmp() {
-  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --progress % flm/tmp/
+  ls|awk '{print "\x27" $0 "\x27" }'|xargs -n 1 -t -J % ydcmd.py put --timeout=120 --retries=1 --progress % flm/tmp/
 }
