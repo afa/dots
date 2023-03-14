@@ -1,0 +1,12 @@
+[ -f ~/.mac_aliases ] && source ~/.mac_aliases
+# [ -f ~/.work_aliases ] && source ~/.work_aliases
+[ -f ~/.home_aliases ] && source ~/.home_aliases
+alias vim_plugins_list='cat ~/.vim/bundle/**/.git/config|ag -o url\ =\ \\\K.+'
+function mkmigrate() {
+  x=$@
+  n=`date '+%s'`
+  m="db/migrate/${n}_${x}.rb"
+  echo $m
+  `touch $m`
+  return
+}
