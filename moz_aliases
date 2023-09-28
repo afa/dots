@@ -33,12 +33,15 @@ function chk_moz() {
   return
 }
 function chk_moz_curl() {
+  st=`date +%s`
   x=`curl -I -s --fail http://project.megarulez.ru/forums/ |head -1|ag --nomultiline -o "HTTP.+200 OK"|wc -l|sed 's/^[\t ]*//g'`
+  en=`date +%s`
+  ((tm=en-st))
   if [[ $x == "1" ]]
   then
-    echo -e "\033[1;32mrequest ok\033[0m"
+    echo -e "\033[1;32mrequest ok for $tm\033[0m"
   else
-    echo -e "\033[1;31mmozaiq failed request\033[0m"
+    echo -e "\033[1;31mmozaiq failed request in $tm\033[0m"
     echo $x
   fi
   return
@@ -53,6 +56,7 @@ function chk_moz_body() {
   fi
   return
 }
+
 function moz_up() {
   x=`ssh mozaic uptime`
   u=`echo "$x"|ag --nocolor -o '\b[0-9:]{5,8}\s+up\s+\K.+(?=,\s+\d+\s+user)'`
@@ -60,6 +64,7 @@ function moz_up() {
   echo -e "\033[1;32mup: $u\nla: $l\033[0m"
   return
 }
+
 function moz_mem() {
   x=`ssh mozaic free -m`
   # awk -F ' ' '/^Mem:/ { print $7 }'
@@ -68,6 +73,7 @@ function moz_mem() {
   echo -e "\033[1;32mmem avail: $f\nswap free: $s\033[0m"
   return
 }
+
 function moz_disk() {
   x=`ssh mozaic df -m /var/www/html`
   f=`echo "$x"|awk -F ' ' '/^\/dev\// { print $4 "M" }'`
@@ -75,6 +81,7 @@ function moz_disk() {
   echo -e "\033[1;32mDisk free: $f\nDisk usage: $s\033[0m"
   return
 }
+
 function moz() {
   chk_moz_inet
   chk_moz_ping
@@ -95,6 +102,7 @@ function moz_procs() {
   ssh mozaic ps aux --sort -rss|head -3|"$LOCAL_CMD_CUT" -f 2,4-6,11-
   return
 }
+
 function moz_restart() {
   ssh mozaic 'service apache2 stop;service mysql stop;service mysql start&&service apache2 start'
   chk_moz
