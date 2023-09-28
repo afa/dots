@@ -1,10 +1,11 @@
 set nocompatible
 execute pathogen#infect()
 syntax on
-:colorscheme badwolf
+colorscheme badwolf
 filetype plugin indent on
 
 " set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 " call plug#begin()
 " call plug#end()
 
@@ -38,6 +39,9 @@ noremap <C-H> :tabp<CR>
 
 noremap <C-i> :InlineEdit<CR>
 
+" FZF Buffers
+nnoremap ; :Buffers<CR>
+nnoremap ' :Files<CR>
 " use * to search current word in normal mode
 nmap * <Plug>AgActionWord
 " use * to search selected text in visual mode
@@ -58,8 +62,8 @@ let g:jsx_ext_required = 0
 
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_ruby_rubocop_exec = '/home/afa/.rbenv/versions/2.6.6/bin/rubocop'
-" let g:syntastic_ruby_rubocop_exec = 'bundle exec rubocop'
+" let g:syntastic_ruby_rubocop_exec = '/home/afa/.rbenv/versions/2.6.6/bin/rubocop'
+let g:syntastic_ruby_rubocop_exec = 'bundle exec rubocop'
 let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
 let g:startify_session_persistence = 1
 

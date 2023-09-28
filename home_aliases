@@ -32,6 +32,10 @@ function oggtomp3() {
   ls -- *.ogg|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
 
+function m4atomp3() {
+  ls -- *.m4a|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
+}
+
 function mp4tomp3() {
   ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
@@ -82,7 +86,7 @@ alias ydls="ydcmd.py ls"
 alias yddu="ydcmd.py du"
 
 function pbdrpupall() {
-  ls|awk '{print "\x27" $0 "\x27" "\x20\x27" "Apps/Dropbox\x20PocketBook/" $0 "\x27" }'|xargs -n 2 -t -J % dbxcli put % 
+  ls|awk '{print "\x27" $0 "\x27" "\x20\x27" "Apps/Dropbox\x20PocketBook/" $0 "\x27" }'|xargs -n 2 -t -J % dbxcli put '%' 
 }
 
 function ydupalltomp3() {
