@@ -1,7 +1,22 @@
+# docker
+
+alias dc_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias dc_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
+
+function dc_clean_cache() {
+  docker kill $(docker ps -q)
+  dc_clean_ps
+  docker rmi $(docker images -a -q)
+}
+
 #evrone
 
 function erpbrrb() {
   git pull --rebase origin develop
+}
+
+function erppostco() {
+  make app-build &&make app-db-drop &&make app-db-prepare && make test-db-prepare
 }
 #srg
 alias srg_ssh='ssh srg_prod'
