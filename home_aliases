@@ -80,6 +80,8 @@ function dus() {
   du -h -d 1 $@|sort -h
 }
 
+alias dfc='df -h .'
+
 # yandex disk handling
 alias ydinfo="ydcmd.py info"
 alias ydls="ydcmd.py ls"
