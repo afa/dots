@@ -2,6 +2,9 @@
 alias rhm='ssh afahome'
 alias rhdf='rhm df -h'
 
+# mplayer
+alias mfs='mplayer -fs'
+
 # transmission @afahome
 alias rtrans='rhm transmission-remote'
 alias rtrl='rtrans -l'
