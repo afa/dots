@@ -1,14 +1,14 @@
 IMAPAccount imap-afa-google
 Host imap.gmail.com
 User afa.alone@gmail.com
-Pass "***REMOVED***"
+Pass "google pass"
 # PassCmd "c63052daf04c38b37dc4b46ce9330822"
 SSLType IMAPS
 
 IMAPAccount imap-wc-yandex
 Host imap.yandex.ru
 User zavgorodniy@web-creator.ru
-Pass "yxsghiczqsjgceyy"
+Pass "yandex pass"
 # PassCmd "c63052daf04c38b37dc4b46ce9330822"
 SSLType IMAPS
 

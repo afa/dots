@@ -63,9 +63,9 @@ alias piao_test_ssh='ssh piao5_test'
 # alias pgdump_stage_knd='pg_dump -U ozavgorodniy -h 188.40.16.239 -p 7441 -t support_state -a knd_staging'
 
 #redmine
-REDMINE_WORK_SERVER='https://itmine.***REMOVED***'
-REDMINE_WORK_TOKEN='14f88211b63087cd642c17f24030b924ebf86a7b'
-REDMINE_WORK_USER='1074'
+REDMINE_WORK_SERVER='https://itmine'
+REDMINE_WORK_TOKEN='token'
+REDMINE_WORK_USER='0001'
 REDMINE_CF='ОЦРВ. Redmine. Сопровождение + модификации'
 # REDMINE_WORK_SERVER='http://localhost'
 # REDMINE_WORK_TOKEN='d816bb490bfc9e75aa7d957b9852a4bcf50c679f'
