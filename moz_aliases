@@ -22,8 +22,9 @@ function chk_moz_ping() {
 }
 
 function chk_moz() {
-  x=`ssh mozaic service --status-all|ag --nomultiline -o "\[ \+ \].*(apache2|mysql|postgres)"|wc -l|sed 's/^[\t ]*//g'`
-  if [[ $x == '2' ]]
+  # x=`ssh mozaic service --status-all|ag --nomultiline -o "\[ \+ \].*(apache2|mysql|postgres)"|wc -l|sed 's/^[\t ]*//g'`
+  x=`ssh mozaic service --status-all|ag --nomultiline -o "\[ \+ \].*(postgres)"|wc -l|sed 's/^[\t ]*//g'`
+  if [[ $x == '1' ]]
   then
     echo -e "\033[1;32mservice ok\033[0m"
   else
@@ -34,7 +35,7 @@ function chk_moz() {
 }
 function chk_moz_curl() {
   st=`date +%s`
-  x=`curl -I -s --fail http://project.megarulez.ru/forums/ |head -1|ag --nomultiline -o "HTTP.+200 OK"|wc -l|sed 's/^[\t ]*//g'`
+  x=`curl -I -s --fail http://project.megarulez.ru/ |head -1|ag --nomultiline -o "HTTP.+200 OK"|wc -l|sed 's/^[\t ]*//g'`
   en=`date +%s`
   ((tm=en-st))
   if [[ $x == "1" ]]
@@ -47,11 +48,16 @@ function chk_moz_curl() {
   return
 }
 function chk_moz_body() {
-  x=`curl -s --fail http://project.megarulez.ru/forums/ |head -10|tail -1|ag --nomultiline -o "vBulletin 3.8.9 Beta 3"|wc -l|sed 's/^[\t ]*//g'`
+  st=`date +%s`
+  # x=`curl -s --fail http://project.megarulez.ru/forums/ |head -10|tail -1|ag --nomultiline -o "vBulletin 3.8.9 Beta 3"|wc -l|sed 's/^[\t ]*//g'`
+  x=`curl -s --fail http://project.megarulez.ru/ |ag --nomultiline -o "Ex cinere surgo"|wc -l|sed 's/^[\t ]*//g'`
+  en=`date +%s`
+  ((tm=en-st))
   if [[ $x == "1" ]]
   then
-    echo -e "\033[1;32mbody ok\033[0m"
+    echo -e "\033[1;32mbody ok for $tm\033[0m"
   else
+    echo -e "\033[1;31mmozaiq failed body request in $tm\033[0m"
     echo $x
   fi
   return

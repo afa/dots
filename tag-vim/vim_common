@@ -20,7 +20,7 @@ map <Leader>a :call RunCurrentSpecFile()<CR>
 
 set laststatus=2
 set ruler
-set colorcolumn=120
+set colorcolumn=180
 highlight ColorColumn ctermbg=52
 " set textwidth=120
 set tb=
@@ -55,15 +55,25 @@ nnoremap <Leader>/ :CtrlPTag<CR>
 nnoremap <Leader>. :tn<CR>
 nnoremap <Leader>, :tp<CR>
 
+let g:ale_linters = {
+\   'ruby': ['rubocop'],
+\}
+
 let g:reek_always_show = 0
 let g:reek_on_loading = 0
 
 let g:jsx_ext_required = 0
 
+let g:syntastic_enable_signs=1
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+" let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_aggregate_errors = 1
+" let g:syntastic_ruby_rubocop_exec = 'make'
+" let g:syntastic_ruby_rubocop_args='rubocop LINT_PATH='
+" let g:syntastic_debug=3
 " let g:syntastic_ruby_rubocop_exec = '/home/afa/.rbenv/versions/2.6.6/bin/rubocop'
 let g:syntastic_ruby_rubocop_exec = 'bundle exec rubocop'
+
 let g:startify_list_order = ['sessions', 'files', 'dir', 'bookmarks']
 let g:startify_session_persistence = 1
 

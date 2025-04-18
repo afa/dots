@@ -1,2 +1,6 @@
 *.swp
 *.swo
+Makefile.local
+edits.local.md
+Gemfile.local
+Gemfile.local.lock

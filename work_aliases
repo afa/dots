@@ -138,3 +138,6 @@ function red_wrks_add() {
   local d=`jq -n "{time_entry: {issue_id: $iss, spent_on: \"$dat\", hours: $hours, activity_id: $act, comments: \"$cmnt\"$cf}}"`
   red_post 'time_entries.json' "$d"
 }
+
+# make for local
+alias ml='make -f Makefile.local'

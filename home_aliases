@@ -35,12 +35,21 @@ function oggtomp3() {
   ls -- *.ogg|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
 
+
+function mp4to360p() {
+  ls -- *.mp4|awk '{ print "-i \"" $0 "\"" " \0" " -vf scale=-2:360 -vcodec libx264 -crf 20 \"./" $0 ".360p.mp4\"" "\0" }'|xargs -n 9 ffmpeg
+}
+
 function m4atomp3() {
   ls -- *.m4a|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
 
 function mp4tomp3() {
   ls -- *.mp4|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
+}
+
+function mkvtomp3() {
+  ls -- *.mkv|awk '{ print "\"" $0 "\"" " \0" "\"./" $0 ".mp3" "\"" "\0" }'|xargs -n 2 ffmpeg -vn -i
 }
 
 function avi2mp4() {
@@ -89,6 +98,8 @@ alias dfc='df -h .'
 alias ydinfo="ydcmd.py info"
 alias ydls="ydcmd.py ls"
 alias yddu="ydcmd.py du"
+
+alias lS="l -S"
 
 function pbdrpupall() {
   ls|awk '{print "\x27" $0 "\x27" "\x20\x27" "Apps/Dropbox\x20PocketBook/" $0 "\x27" }'|xargs -n 2 -t -J % dbxcli put '%' 
